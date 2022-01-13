@@ -1,5 +1,5 @@
 const express = require('express')
-// const pageRouter = express.Router()
+const pageRouter = express.Router()
 pageRouter.get('/', async (req, res) =>{
     res.render('home')
 })
