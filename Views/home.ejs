@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<link rel="stylesheet" href="css/home.css">
+<title>Welcome</title>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <div class="container home pb-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="title">About me</h2>
+                <p class="text-silver">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi dignissimos sit a similique vero, neque distinctio! Repellendus vel soluta beatae dolor quidem sed molestiae mollitia nemo? Mollitia incidunt eum aliquid? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates amet, similique perferendis ducimus eius non, dicta corporis eaque in magni pariatur officiis nulla sit maiores ullam natus! Corrupti, doloribus. Natus!</p>
+                <h6 class="mb-1"><b>Contact me:</b></h6>
+                <ul>
+                    <li>Email: lephitan1989@gmail.com</li>
+                    <li>Phone: 0908.1313.60</li>
+                    <li>Phone: 0962.0313.62</li>
+                </ul>
+                <div class="d-flex">
+                    <i class="fab fa-facebook-f icon"></i>
+                    <i class="fab fa-instagram icon"></i>
+                    <i class="fab fa-twitter icon"></i>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="container-fluid bg-dark home pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="title">
+                        My project
+                    </h2>
+                </div>
+                <% 
+                    for (let index = 0; index < 6; index++) {
+                        %> 
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card project">
+                                <img src="img/tiki.png" alt="" class="card-image">
+                                <div class="card-body">
+                                    <h6 class="text-center">Project <%= index%> </h6>    
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                    }
+                %>
+                <div class="col-12">
+                    <button class="btn-view-all">
+                        View All
+                    </button>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid home bg-danger">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="title">Service</h2>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-white service">
+                        <i class="fal fa-camcorder"></i>
+                        <div class="card-body">
+                            <h6 class="text-center text-dark text-bold mb-2">
+                                <b>Service name</b>
+                            </h6>
+                            <p class="text-silver text-center">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi enim voluptas maxime?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-white service">
+                        <i class="fal fa-calendar-star"></i>
+                        <div class="card-body">
+                            <h6 class="text-center text-dark text-bold mb-2">
+                                <b>Event</b>
+                            </h6>
+                            <p class="text-silver text-center">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi enim voluptas maxime?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-white service">
+                        <i class="fal fa-thumbs-up"></i>
+                            <div class="card-body">
+                            <h6 class="text-center text-dark text-bold mb-2">
+                                <b>Reputation</b>
+                            </h6>
+                            <p class="text-silver text-center">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi enim voluptas maxime?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
