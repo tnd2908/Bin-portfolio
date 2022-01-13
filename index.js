@@ -8,7 +8,6 @@ const pageRouter = require('./Route/page')
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs')
 app.use('/', pageRouter)
-app.get('/', (req, res)=> res.send('<h1>Hello</h1>'))
 const PORT = process.env.PORT || 3000
 const server = http.createServer(app)
 server.listen(PORT, () => console.log(`Server is running on ${PORT} `))
