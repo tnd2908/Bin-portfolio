@@ -7,4 +7,5 @@ const pageRouter = require('./Route/page')
 app.set('view engine', 'ejs')
 app.use('/', pageRouter)
 const PORT = process.env.PORT || 4000
-app.listen(PORT, () => console.log('Server is running on 4000'))
+const server = http.createServer(app)
+server.listen(PORT, () => console.log('Server is running on 4000'))
