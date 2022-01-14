@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="css/home.css">
 <title>Welcome</title>
 <body>
+    <%- include('layouts/Navbar'); %>
     <div class="container home pb-5">
         <div class="row">
             <div class="col-12">
@@ -37,7 +38,7 @@
                         %> 
                         <div class="col-lg-4 col-md-6">
                             <div class="card project">
-                                <img src="img/tiki.png" alt="" class="card-image">
+                                <img src= <%= url + "tiki.png"%> alt="" class="card-image">
                                 <div class="card-body">
                                     <h6 class="text-center">Project <%= index%> </h6>    
                                 </div>
