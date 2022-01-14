@@ -4,7 +4,7 @@ const path = require('path')
 const http = require('http')
 const ejs = require('ejs')
 app.use(express.static('public'))
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine', 'ejs')
 const pageRouter = require('./Route/page')
 
