@@ -48,7 +48,11 @@ img{
 }
 
 
-
+@media screen and (min-width: 800px){
+    iframe{
+        min-height: 60vh;
+    }
+}
 html {
     font-size: 100%;
   }
@@ -58,7 +62,6 @@ html {
     font-family: "Open sans", Helvetica, Arial, sans-serif;
     color: #666666;
     padding: 0;
-    min-height: 200vh;
   }
   .topspace {
     margin-top: 40px;
