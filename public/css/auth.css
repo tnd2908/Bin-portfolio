@@ -1,0 +1,30 @@
+.auth {
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.flex-mid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form {
+    background-color: #222020;
+    padding: 30px;
+    border-radius: 8px;
+}
+.form-control {
+    background-color: #434343;
+    border: 0;
+    height: 45px;
+}
+input {
+    color: white !important;
+}
+.form-control:focus {
+    background-color: #434343;
+}
+.form-control::placeholder {
+    color: gray;
+}

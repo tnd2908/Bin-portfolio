@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('layouts/header'); %>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <div class="container pt-5 pb-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="flex-mid flex-column auth">
+                    <form class="w-100" method="POST" action="/admin/login">
+                        <h1>Login</h1>
+                        <div class="mb-3 mt-3">
+                            <label for="exampleInputEmail1" class="form-label" style="color: silver;">Email address</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Nhập tên đăng nhập" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label" style="color: silver;">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu" name="password">
+                        </div>
+                        <% if(msg) { %>
+                            <div class="alert alert-warning" role="alert">
+                                <%= msg %>
+                            </div>
+                        <% } %>
+                        <button type="submit" class="btn btn-danger w-100 mt-3" style="height: 45px;">Đăng nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
