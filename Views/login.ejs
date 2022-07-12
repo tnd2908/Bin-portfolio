@@ -12,16 +12,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="flex-mid flex-column auth">
-                    <form class="w-100" method="POST" action="/admin/login">
+                    <form id="form" class="w-100" method="POST" action="/admin/login">
                         <h1>Login</h1>
                         <div class="mb-3 mt-3">
-                            <label for="exampleInputEmail1" class="form-label" style="color: silver;">Email address</label>
+                            <label for="exampleInputEmail1" class="form-label" style="color: silver;">Username</label>
                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Nhập tên đăng nhập" name="username">
+                                aria-describedby="emailHelp" placeholder="Nhập tên đăng nhập" name="username" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="color: silver;">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu" name="password">
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu" name="password" required>
                         </div>
                         <% if(msg) { %>
                             <div class="alert alert-warning" role="alert">
@@ -35,5 +35,10 @@
         </div>
     </div>
 </body>
+<!-- <script>
+    document.getElementById('form').addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
 
+</script> -->
 </html>

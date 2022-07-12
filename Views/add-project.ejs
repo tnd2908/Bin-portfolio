@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('layouts/header'); %>
+        <link rel="stylesheet" href="/css/admin.css">
+        <title>Document</title>
 </head>
+
 <body>
-    <form action="/project/add" method="POST" enctype="multipart/form-data">
-    
-        <input type="text" name="name" id="name">
-        <input type="text" name="youtubeUrl" id="youtubeUrl">
-        <input type="file" class="form-control" id="image" name="image">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <%- include('layouts/menu-bar'); %>
+            </div>
+            <div class="col-10">
+                <form class="form" action="/project/add" method="post" id="forms" enctype='multipart/form-data'>
+                    <h3 class="mb-3">Thêm dự án mới</h3>
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><i class="fal fa-signature me-2"></i>Tên dự án</label>
+                        <input name="name" type="text" class="form-control" id="name" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cate" class="form-label"><i class="fal fa-th me-2"></i>Danh mục</label>
+                        <select name="category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="tvc">TVC</option>
+                            <option value="viral">Viral</option>
+                            <option value="film">Film</option>
+                            <option value="team-building">Team Building</option>
+                            <option value="film">Event</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label"><i class="fal fa-image me-2"></i>Hình ảnh</label>
+                        <input name="thumb" class="form-control form-control-sm" id="formFileSm" type="file">
+                      </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><i class="fal fa-link me-2"></i>Link</label>
+                        <input name="youtubeUrl" type="text" class="form-control" id="name" placeholder="Link video">
+                    </div>
+                    <button class="btn btn-danger w-100" type="submit">Xác nhận</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    document.getElementById('form').addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
+</script>
+
 </html>

@@ -12,9 +12,8 @@ const schema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: mongoose.Types.ObjectId,
+        type: String,
         required: true,
-        ref: 'category'
     },
     thumb: {
         type: String,
