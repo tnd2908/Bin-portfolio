@@ -44,6 +44,10 @@ h4 {
 .nav p {
     margin-bottom: 0;
 }
+.thumb {
+    width: 100px;
+    height: 100px;
+}
 .form {
     background-color: #222020;
     max-width: 900px;
@@ -77,4 +81,28 @@ h4 {
     border: 1px solid rgb(73, 70, 70);
     font-size: 17px;
 
+}
+.btn-delete {
+    background-color: #ad6800;
+    color: white;
+    font-size: 18px;
+    height: 45px;
+    width: 45px;
+    border-radius: 6px;
+}
+.btn-edit {
+    background-color: #52c41a;
+    color: white;
+    font-size: 18px;
+    height: 45px;
+    width: 45px;
+    border-radius: 6px;
+
+}
+table {
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.btn-group {
+    
 }
