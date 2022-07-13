@@ -1,18 +1,14 @@
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         unique: true
     },
-    youtubeUrl: {
+    facebookUrl: {
         type: String,
+        unique: true,
         required: true
-    },
-    category: {
-        type: String,
-        required: true,
     },
     thumb: {
         type: String,
@@ -27,5 +23,5 @@ const schema = new mongoose.Schema({
         required: true
     }
 })
-const Project = mongoose.model("project", schema)
-module.exports = Project;
+const LiveStream = mongoose.model('livestream', schema);
+module.exports = LiveStream;

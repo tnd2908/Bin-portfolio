@@ -3,22 +3,21 @@ const bcrypt = require('bcrypt')
 class AuthController {
     static login = async (req, res) => {
         const { username, password } = req.body
-        console.log(req.body);
         try {
-            const user = await User.findOne({ username })
+            const user = await User.findOne({ username }).clone()
             if (!user) {
-                // res.render('login', {msg: 'Sai tài khoản hoặc mật khẩu'})
-                res.status(400).json({
-                    msg: 'asdsad'
+                return res.status(400).json({
+                    msg: 'asdsada'
                 })
-            }
-            else if (user) {
+            } else {
                 await bcrypt.compare(password, user.password, (err, same) => {
                     if (same) {
-                        res.redirect('/')
+                        req.session.userId = user._id
+                        return res.json({
+                            msg: ''
+                        })
                     }
-                    // else res.render('login', {msg: 'Sai tài khoản hoặc mật khẩu'})
-                    else res.status(400).json({
+                    else return res.status(400).json({
                         msg: 'asdsad'
                     })
                 })

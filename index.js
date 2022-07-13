@@ -5,6 +5,7 @@ const http = require('http')
 const DBConnection = require('./Config/db')
 const fileUpload = require('express-fileupload')
 const ejs = require('ejs')
+const session = require('express-session');
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -12,6 +13,14 @@ app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine', 'ejs')
 app.use(fileUpload({
     useTempFiles: true
+}))
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 *24
+    }
 }))
 DBConnection()
 

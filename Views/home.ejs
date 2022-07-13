@@ -33,15 +33,15 @@
                     </h2>
                 </div>
                 <% 
-                    for (let index = 0; index < 6; index++) {
+                    for (let index = 0; index < projects.length; index++) {
                         %> 
                         <div class="col-lg-4 col-md-6">
                             <div class="card project">
-                                <a href="/post/<%= index.toString() %>">
-                                    <img src="img/Tiki.png" alt="" class="card-image">
+                                <a href="/project/<%= projects[index]._id %>">
+                                    <img src=<%= projects[index].thumb %> alt="" class="card-image w-100">
                                 </a>
                                 <div class="card-body">
-                                    <h6 class="text-center">Project <%= index%> </h6>    
+                                    <h6 class="text-center"><%= projects[index].name%> </h6>    
                                 </div>
                             </div>
                         </div>
