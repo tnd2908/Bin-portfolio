@@ -1,7 +1,8 @@
 const express = require('express');
+const checkAuth = require('../Middleware/checkAuth');
 const Profile = require('../Model/Profile');
 const profileRouter = express.Router();
-profileRouter.post('/', async (req, res) => {
+profileRouter.post('/', checkAuth, async (req, res) => {
     try {
         const profiles = await Profile.find({})
         const id = profiles[0]._id
