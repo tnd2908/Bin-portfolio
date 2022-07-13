@@ -42,6 +42,27 @@ i.icon{
     align-items: center;
     background-color: #434343;
     border-radius: 3px;
+    transition: 0.4s;
+}
+.modal-mid {
+    top: 50px;
+}
+.modal-long {
+    max-width: 1000px;
+}
+i.icon:hover {
+    background-color: #cf1322;
+}
+.work {
+    overflow: hidden;
+}
+.work-image {
+    transition: 0.5s;
+    filter: brightness(90%);
+}
+.work-image:hover {
+    transform: scale(1.1);
+    filter: brightness(100%);
 }
 .card{
     border-style: none;

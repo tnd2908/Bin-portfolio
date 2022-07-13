@@ -28,7 +28,35 @@ class ProjectController {
     }
     static addProjectPage = (req, res) => {
         res.render('add-project')
-    } 
+    }
+    static getProjects = async (req, res) => {
+        try {
+            const { page } = req.query || 1
+            const projects = await Project.find({}).skip(page * 12).limit(12) || []
+            res.render('project-list', {projects})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    static getLivestream = async (req, res) => {
+        try {
+            const { page } = req.query || 1
+            const projects = await LiveStream.find({}).skip(page * 12).limit(12) || []
+            res.render('live-stream-list', {projects})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    static getProjectByCategory = async (req, res) => {
+        try {
+            const { page } = req.query || 1
+            const { category } = req.params
+            const projects = await Project.find({category}).skip(page * 12).limit(12) || []
+            res.render('project-list', {projects})
+        } catch (error) {
+            console.log(error);
+        }
+    }
     static addProject = async (req, res) => {
         const { name, category, youtubeUrl } = req.body;
         const file = req.files.thumb

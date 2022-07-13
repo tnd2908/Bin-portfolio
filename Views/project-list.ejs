@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); %>
+    <link rel="stylesheet" href="/css/project.css">
+    <title>Project</title>
+<body>
+    <%- include('layouts/Navbar'); %>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="fs-1 text-center mt-5 mb-3">My Projects</h1>
+            </div>
+            <% if(!projects.length) { %>
+                <h5 class="text-center" style="color: gray;">(There is 0 project now)</h5>
+            <% } %>
+            <% if(projects.length) { %>
+                <% for (let index=0; index < projects.length; index++) { %>
+                    <div class="col-lg-4 col-md-6 mb-1 mt-3">
+                        <div class="card project">
+                            <a href="/project/<%= projects[index]._id %>">
+                                <img src=<%=projects[index].thumb %> alt="" class="card-image w-100">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="text-center">
+                                    <%= projects[index].name%>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="col-12 mb-5 mt-5">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center pagination-lg">
+                          <li class="page-item disabled">
+                            <a class="page-link">Previous</a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

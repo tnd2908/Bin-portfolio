@@ -46,8 +46,21 @@ h1, h2, h3, h4, h5, h6, p, span{
 img{
     object-fit: cover;
 }
-
-
+.page-link {
+  background-color: #222020;
+  border-color: #434343;
+  color: white;
+}
+.page-link:hover {
+  background-color: #000;
+  color: white;
+}
+.page-item.disabled .page-link {
+  background-color: #222020;
+  border-color: #434343;
+  color: white;
+  opacity: 0.7;
+}
 @media screen and (min-width: 800px){
     iframe{
         min-height: 60vh;
