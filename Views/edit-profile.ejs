@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('layouts/header'); %>
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>Edit profile</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+        <%- include('layouts/menu-bar'); %>
+      </div>
+      <div class="col-10">
+        <form class="form row" action="/profile" method="POST" enctype="application/json">
+            <div class="mb-3 col-12">
+                <label for="email" class="form-label">Email</label>
+                <input name="email" value=<%= profile.email  %>  type="text" class="form-control" id="email" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="phone" class="form-label">Số điện thoại</label>
+                <input name="phone" value=<%= profile.phone  %> type="text" class="form-control" id="phone">
+              </div>
+              <div class="mb-3 col-6">
+                <label for="zalo" class="form-label">Zalo</label>
+                <input name="zalo" value=<%= profile.zalo  %> type="text" class="form-control" id="zalo">
+              </div>
+              <div class="mb-3 col-12">
+                <label for="facebook" class="form-label">Facebook</label>
+                <input name="facebook" value=<%= profile.facebook  %> type="text" class="form-control" id="facebook">
+              </div>
+              <div class="mb-3 col-12">
+                <label for="description" class="form-label">Giới thiệu</label>
+                <textarea name="description" rows="4" class="form-control" id="description">
+                    <%= profile.description  %>
+                </textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const deletePj = (id) => {
+    console.log(id);
+  }
+</script>
+
+</html>

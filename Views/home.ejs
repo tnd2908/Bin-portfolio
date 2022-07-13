@@ -10,17 +10,12 @@
                 <div class="row">
                     <div class="col-12">
                         <h2 class="title">About me</h2>
-                        <p class="text-silver">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-                            dignissimos sit a similique vero, neque distinctio! Repellendus vel soluta beatae dolor
-                            quidem sed molestiae mollitia nemo? Mollitia incidunt eum aliquid? Lorem ipsum dolor, sit
-                            amet consectetur adipisicing elit. Voluptates amet, similique perferendis ducimus eius non,
-                            dicta corporis eaque in magni pariatur officiis nulla sit maiores ullam natus! Corrupti,
-                            doloribus. Natus!</p>
+                        <p class="text-silver"> <%= profile.description%></p>
                         <h6 class="mb-1"><b>Contact me:</b></h6>
                         <ul>
-                            <li>Email: lephitan1989@gmail.com</li>
-                            <li>Phone: 0908.1313.60</li>
-                            <li>Zalo: 0962.0313.62</li>
+                            <li>Email: <%= profile.email%></li>
+                            <li>Phone:  <%= profile.phone%></li>
+                            <li>Zalo:  <%= profile.zalo%></li>
                         </ul>
                         <div class="d-flex">
                             <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79" target="_blank"> <i class="fab fa-facebook-f icon"></i></a>
@@ -71,7 +66,7 @@
                         <div class="container">
                             <div class="d-flex flex-wrap justify-content-center">
                                 <% for (let index=1; index <= 10; index++) { %>
-                                    <div data-aos="zoom-in-up" class="col-12 col-lg-3 col-xl-3 col-md-6" style="padding: 10px;">
+                                    <div data-aos="zoom-in-up" class="col-6 col-lg-3 col-xl-3 col-md-6" style="padding: 10px;">
                                         <div class="card" style="padding: 8px;" >
                                             <div class="work">
                                                 <img data-bs-toggle="modal" data-bs-target="#id<%= index%>" src="/img/<%= index%>.png" alt="" class="card-image work-image w-100">

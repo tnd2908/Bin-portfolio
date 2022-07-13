@@ -44,11 +44,9 @@ i.icon{
     border-radius: 3px;
     transition: 0.4s;
 }
-.modal-mid {
-    top: 50px;
-}
+
 .modal-long {
-    max-width: 1000px;
+    max-width: 900px;
 }
 i.icon:hover {
     background-color: #cf1322;
@@ -97,4 +95,9 @@ i.icon:hover {
 }
 .card.card.project:hover{
     transform: translateY(-10px);
+}
+@media screen and (max-width: 600px) {
+    .card-image.work-image {
+        height: 150px;
+    }
 }

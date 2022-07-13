@@ -27,10 +27,11 @@ DBConnection()
 const pageRouter = require('./Route/page')
 const projectRouter = require('./Route/project')
 const adminRouter = require('./Route/admin')
-
+const profileRouter = require('./Route/profile')
 
 app.use('/project', projectRouter)
 app.use('/admin', adminRouter)
+app.use('/profile', profileRouter)
 app.get('/upload/:name', (req, res)=>{
     const {name} = req.params
     console.log(path.join(__dirname, '/public/img/')+name)

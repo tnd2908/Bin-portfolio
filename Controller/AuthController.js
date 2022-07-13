@@ -1,4 +1,6 @@
 const User = require("../Model/user");
+const Profile = require("../Model/Profile");
+
 const bcrypt = require('bcrypt')
 class AuthController {
     static login = async (req, res) => {
