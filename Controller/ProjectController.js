@@ -114,5 +114,26 @@ class ProjectController {
             })
         }
     }
+    static deleteProject = async (req, res) => {
+        try {
+            const {id} = req.params
+            await Project.findByIdAndDelete(id, (err, result) => {
+                if (result) {
+                    res.status(200).json({
+                        msg: 'Haha'
+                    })
+                } else {
+                    res.status(400).json({
+                        msg: 'Fail'
+                    })
+                }
+            })
+        } catch (error) {
+            console.log(error);
+            res.json({
+                msg: error
+            })
+        }
+    }
 }
 module.exports = ProjectController
