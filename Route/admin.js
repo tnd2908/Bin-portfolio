@@ -18,4 +18,5 @@ adminRouter.get('/add', (req, res) => {
 })
 adminRouter.post('/login', AuthController.login)
 adminRouter.post('/register', AuthController.register)
+adminRouter.get('/reset', AuthController.resetPassword)
 module.exports = adminRouter;

@@ -1,6 +1,6 @@
 .menu {
     min-height: 100vh;
-    background: #222020;
+    /* background: #222020; */
 }
 .nav {
     display: flex;
@@ -45,8 +45,10 @@ h4 {
     margin-bottom: 0;
 }
 .thumb {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    border-radius: 8px;
 }
 .form {
     background-color: #222020;
@@ -85,19 +87,23 @@ h4 {
 .btn-delete {
     background-color: #ad6800;
     color: white;
-    font-size: 18px;
-    height: 45px;
-    width: 45px;
+    font-size: 17px;
     border-radius: 6px;
+    border: 0;
+    padding: 5px 12px;
 }
 .btn-edit {
+    background-color: transparent;
+    color: white;
+    font-size: 17px;
+    border-radius: 6px;
+    border: 1px solid #52c41a;
+    color: #52c41a;
+    padding: 5px 12px;
+}
+.btn-edit:hover {
     background-color: #52c41a;
     color: white;
-    font-size: 18px;
-    height: 45px;
-    width: 45px;
-    border-radius: 6px;
-
 }
 table {
     margin: 0 auto;
@@ -106,3 +112,6 @@ table {
 .btn-group {
     
 }
+/* .project h4 {
+    float: left;
+} */

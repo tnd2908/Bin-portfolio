@@ -15,54 +15,28 @@
                 <%- include('layouts/menu-bar'); %>
             </div>
             <div class="col-10">
-                <table class="table table-dark table-striped-columns">
-                    <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Hình ảnh</th>
-                          <th scope="col">Tên dự án</th>
-                          <th scope="col">Link youtube</th>
-                          <th scope="col">Thao tác</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% 
-                            for (let index = 0; index < projects.length; index++) {
-                                %> 
-                                <tr>
-                                    <th style="width: 80px;" scope="row"> <%= index+1%> </th>
-                                    <td style="width: 150px;"><img class="thumb" src=<%= projects[index].thumb %> alt=""></td>
-                                    <td><%= projects[index].name %></td>
-                                    <td><a href=<%= projects[index].youtubeUrl %>> <%= projects[index].youtubeUrl %> </a></td>
-                                    <td style="width: 110px;"> 
-                                        <div class="d-flex align-items-center justify-content-between btn-group">
-                                            <button onclick="console.log(this)" class="btn-edit"><i class="fal fa-pen"></i></button>
-                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn-delete"><i class="fal fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                  </tr>
-                                <%
-                            }
-                        %>
-                      </tbody>
-                </table>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title text-dark" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div class="container-fluid pt-5">
+                <div class="row">
+                  <% 
+                  for (let index = 0; index < projects.length; index++) {
+                      %> 
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                          <div class="bg-dark project rounded" style="padding: 15px;">
+                            <img src=<%= projects[index].thumb %> alt="" class="thumb">
+                            <div class="d-flex">
+                              <h5 class="mt-3 mb-3"> <%= projects[index].name %> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                              <button id="btn" class="btn btn-edit"> <i class="fal fa-pen me-2"></i>Chỉnh sửa </button>
+                              <button onclick="console.log(<%= JSON.stringify(projects[index]._id) %>)" class="btn-delete"> <i class="fal fa-trash-alt me-2"></i> Xoá </button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-danger">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      <%
+                    }
+                   %>
+                </div>
+              </div>
             </div>
         </div>
     </div>
