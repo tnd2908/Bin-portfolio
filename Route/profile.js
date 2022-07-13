@@ -21,7 +21,5 @@ profileRouter.post('/', async (req, res) => {
         })
     }
 })
-profileRouter.get('/', (req, res) => {
-    res.render('add-project')
-})
+
 module.exports = profileRouter
