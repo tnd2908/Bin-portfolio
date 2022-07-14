@@ -30,7 +30,7 @@ adminRouter.get('/livestream', checkAuth, async (req, res) => {
         console.log(error);
     }
 })
-adminRouter.get('/profile', async (req, res) => {
+adminRouter.get('/profile', checkAuth, async (req, res) => {
     try {
         const profile = await Profile.find({}).limit(1)
         res.render('edit-profile', {profile: profile[0]})
