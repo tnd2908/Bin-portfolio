@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('layouts/header'); %>
+        <link rel="stylesheet" href="/css/admin.css">
+        <title>Cập nhật </title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <%- include('layouts/menu-bar'); %>
+            </div>
+            <div class="col-10">
+                <form class="form" action="/project/edit/<%= detail._id%>" method="post" id="forms"
+                    enctype='multipart/form-data'>
+                    <h3 class="mb-3">Chỉnh sửa thông tin dự án</h3>
+                    <img src="<%= detail.thumb%>" style="height: 200px; margin: 0 auto; display: block;" alt="">
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><i class="fal fa-signal-stream me-2"></i>Livestream</label>
+                        <input value="<%= detail.name%>" name="name" type="text" class="form-control" id="name"
+                            placeholder="name@example.com">
+                    </div>
+                    <h5><%= detail.category%></h5>
+                    <div class="mb-3">
+                        <label for="cate" class="form-label"><i class="fal fa-th me-2"></i>Danh mục</label>
+                        <select name="category" class="form-select form-select-lg mb-3"
+                            aria-label=".form-select-lg example">
+                            <% if(detail.category==='tvc' ) { %>
+                                <option selected value="tvc">TVC</option>
+                                <option value="viral">Viral</option>
+                                <option value="film">Film</option>
+                                <option value="team-building">Team Building</option>
+                                <option value="event">Event</option>
+                            <% } %>
+                            <% if(detail.category==='viral' ) { %>
+                                <option value="tvc">TVC</option>
+                                <option selected value="viral">Viral</option>
+                                <option value="film">Film</option>
+                                <option value="team-building">Team Building</option>
+                                <option value="event">Event</option>
+                            <% } %>
+                            <% if(detail.category==='film' ) { %>
+                                <option value="tvc">TVC</option>
+                                <option value="viral">Viral</option>
+                                <option selected value="film">Film</option>
+                                <option value="team-building">Team Building</option>
+                                <option value="event">Event</option>
+                            <% } %>
+                            <% if(detail.category==='team-building' ) { %>
+                                <option value="team-building">TVC</option>
+                                <option value="viral">Viral</option>
+                                <option value="film">Film</option>
+                                <option selected value="team-building">Team Building</option>
+                                <option value="event">Event</option>
+                            <% } %>
+                            <% if(detail.category==='event' ) { %>
+                                <option value="tvc">TVC</option>
+                                <option value="viral">Viral</option>
+                                <option value="film">Film</option>
+                                <option value="team-building">Team Building</option>
+                                <option selected value="event">Event</option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="formFileSm" class="form-label"><i class="fal fa-image me-2"></i>Hình ảnh</label>
+                        <input name="thumb" class="form-control form-control-sm" id="formFileSm" type="file">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label"><i class="fal fa-link me-2"></i>Link</label>
+                        <input value="<%= detail.youtubeUrl%>" name="youtubeUrl" type="text" class="form-control"
+                            id="name" placeholder="Link stream">
+                    </div>
+                    <button class="btn btn-danger w-100 mt-3" type="submit">Xác nhận</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('form').addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
+    const checkSelected = (category, value) => {
+        console.log(category)
+        if (category === value) {
+            return true
+        }
+        return false
+    }
+</script>
+
+</html>

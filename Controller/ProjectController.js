@@ -116,23 +116,39 @@ class ProjectController {
     }
     static deleteProject = async (req, res) => {
         try {
-            const {id} = req.params
+            const {id, public_id} = req.params
             await Project.findByIdAndDelete(id, (err, result) => {
                 if (result) {
-                    res.status(200).json({
-                        msg: 'Haha'
+                    cloudinary.uploader.destroy(public_id, (response) => {
+                        return res.status(200).json({
+                            msg: 'Haha'
+                        })
                     })
                 } else {
-                    res.status(400).json({
+                    return res.status(400).json({
                         msg: 'Fail'
                     })
                 }
+            }).clone()
+        } catch (error) {
+            return res.json({
+                msg: error,
             })
+        }
+    }
+    static editProject = async (req, res) => {
+        try {
+            const {id} = req.params;
+            const {name, youtubeUrl, category} = req.body
+            const file = req.files
+            if (!file) {
+                await Project.findByIdAndUpdate(id, {name, youtubeUrl, category})
+                res.redirect('/admin')
+            } else {
+                res.redirect('/admin')
+            }
         } catch (error) {
             console.log(error);
-            res.json({
-                msg: error
-            })
         }
     }
 }

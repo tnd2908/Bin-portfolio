@@ -8,7 +8,8 @@ const schema = new mongoose.Schema({
     },
     youtubeUrl: {
         type: String,
-        required: true
+        required: true,
+        unique: false,
     },
     category: {
         type: String,

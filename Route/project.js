@@ -8,4 +8,6 @@ projectRouter.get('/livestream', projectController.getLivestream)
 projectRouter.get('/:category', projectController.getProjectByCategory)
 projectRouter.post('/add', projectController.addProject)
 projectRouter.post('/add-stream', projectController.addStream)
+projectRouter.delete('/delete/:id/:public_id', projectController.deleteProject)
+projectRouter.post('/edit/:id', projectController.editProject)
 module.exports = projectRouter

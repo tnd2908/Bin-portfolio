@@ -1,6 +1,6 @@
 .menu {
     min-height: 100vh;
-    /* background: #222020; */
+    background: #222020;
 }
 .nav {
     display: flex;

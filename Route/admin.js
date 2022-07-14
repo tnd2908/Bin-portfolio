@@ -8,7 +8,7 @@ const adminRouter = express.Router();
 adminRouter.get('/login', (req, res) => {
     res.render('login', {msg: ''})
 })
-adminRouter.get('/', async (req, res) => {
+adminRouter.get('/', checkAuth, async (req, res) => {
     try {
         const projects = await Project.find({}) || []
         res.render('admin', {projects})
@@ -26,6 +26,19 @@ adminRouter.get('/livestream', checkAuth, async (req, res) => {
     try {
         const projects = await LiveStream.find({}) || []
         res.render('live-stream', {projects})
+    } catch (error) {
+        console.log(error);
+    }
+})
+adminRouter.get('/edit/:id', checkAuth, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const detail = await Project.findById(id)
+        if (detail) {
+            res.render('edit-project', {detail})
+        } else {
+            res.redirect('/admin')
+        }
     } catch (error) {
         console.log(error);
     }

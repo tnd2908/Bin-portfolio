@@ -21,7 +21,7 @@
           <div class="row">
             <% for (let index=0; index < projects.length; index++) { %>
               <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-4">
-                <div class="bg-dark project rounded" style="padding: 15px;">
+                <div class="project rounded" style="padding: 15px; background-color: #222020;">
                   <img src=<%=projects[index].thumb %> alt="" class="thumb">
                   <div class="d-flex">
                     <h5 class="mt-3 mb-3">
@@ -29,7 +29,7 @@
                     </h5>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <button id="btn" class="btn btn-edit"> <i class="fal fa-pen me-2"></i>Chỉnh sửa </button>
+                    <button onclick="editPj(<%= JSON.stringify(projects[index]._id) %>)" id="btn" class="btn btn-edit"> <i class="fal fa-pen me-2"></i>Chỉnh sửa </button>
                     <button data-bs-toggle="modal" data-bs-target="#id<%= projects[index]._id %>" class="btn-delete"> <i
                         class="fal fa-trash-alt me-2"></i> Xoá </button>
 
@@ -51,7 +51,7 @@
                         </div>
                         <div class="d-flex justify-content-end" style="padding: 10px;">
                           <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Hủy</button>
-                          <button onclick="deletePj(<%= JSON.stringify(projects[index]._id) %>)" type="button" class="btn btn-danger">Đồng ý</button>
+                          <button onclick="deletePj(<%= JSON.stringify(projects[index]._id) %>, <%= JSON.stringify(projects[index].imageId) %>)" type="button" class="btn btn-danger">Đồng ý</button>
                         </div>
                       </div>
                     </div>
@@ -66,8 +66,23 @@
   </div>
 </body>
 <script>
-  const deletePj = (id) => {
-    console.log(id);
+  const deletePj = (id, publicId) => {
+    fetch(`/project/delete/${id}/${publicId}`, {method: 'DELETE'})
+      .then((res) => {
+        console.log(res)
+        if (res.status === 400) {
+          alert('Đã xảy ra lỗi, không thể xóa!')
+        } else {
+          window.location.reload()
+        }
+      })
+      .catch((err) => {
+        alert('Đã xảy ra lỗi, không thể xóa!')
+        console.log(err);
+      })
+  }
+  const editPj = (id) => {
+    window.location.href = '/admin/edit/' + id
   }
 </script>
 
