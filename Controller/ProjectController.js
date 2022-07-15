@@ -90,7 +90,6 @@ class ProjectController {
         const file = req.files.thumb;
         try {
             cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
-                console.log(result);
                 if (result) {
                     await LiveStream.create({
                         name,
@@ -136,6 +135,28 @@ class ProjectController {
             })
         }
     }
+    static deleteLivestream = async (req, res) => {
+        try {
+            const {id, public_id} = req.params
+            await LiveStream.findByIdAndDelete(id, (err, result) => {
+                if (result) {
+                    cloudinary.uploader.destroy(public_id, (response) => {
+                        return res.status(200).json({
+                            msg: 'Haha'
+                        })
+                    })
+                } else {
+                    return res.status(400).json({
+                        msg: 'Fail'
+                    })
+                }
+            }).clone()
+        } catch (error) {
+            return res.json({
+                msg: error,
+            })
+        }
+    }
     static editProject = async (req, res) => {
         try {
             const {id} = req.params;
@@ -146,6 +167,21 @@ class ProjectController {
                 res.redirect('/admin')
             } else {
                 res.redirect('/admin')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    static editLivestream = async (req, res) => {
+        try {
+            const {id} = req.params;
+            const {name, facebookUrl} = req.body
+            const file = req.files
+            if (!file) {
+                await LiveStream.findByIdAndUpdate(id, {name, facebookUrl})
+                res.redirect('/admin/livestream')
+            } else {
+                res.redirect('/admin/livestream')
             }
         } catch (error) {
             console.log(error);

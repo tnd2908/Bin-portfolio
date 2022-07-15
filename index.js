@@ -38,7 +38,15 @@ app.get('/upload/:name', (req, res)=>{
     res.sendFile(path.join(__dirname, '/public/img/')+name)
 })
 app.get('/', pageRouter)
-
+app.get('/logout', (req, res) => {
+    try {
+        req.session.destroy(() => {
+            res.redirect('/')
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
 const PORT = process.env.PORT || 3000
 const server = http.createServer(app)
 server.listen(PORT, () => console.log(`Server is running on ${PORT} `))

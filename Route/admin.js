@@ -43,6 +43,19 @@ adminRouter.get('/edit/:id', checkAuth, async (req, res) => {
         console.log(error);
     }
 })
+adminRouter.get('/livestream/edit/:id', checkAuth, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const detail = await LiveStream.findById(id)
+        if (detail) {
+            res.render('edit-livestream', {detail})
+        } else {
+            res.redirect('/admin')
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
 adminRouter.get('/profile', checkAuth, async (req, res) => {
     try {
         const profile = await Profile.find({}).limit(1)
