@@ -2,31 +2,47 @@
 <html lang="en">
 <%- include('layouts/header'); %>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <title>Welcome</title>
 
     <body>
         <%- include('layouts/Navbar'); %>
-            <div class="container home pb-5">
+            <div class="container home">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="title">About me</h2>
-                        <p class="text-silver"> <%= profile.description%></p>
+                        <p class="text-silver">
+                            <%= profile.description%>
+                        </p>
                         <h6 class="mb-1"><b>Contact me:</b></h6>
                         <ul>
-                            <li>Email: <%= profile.email%></li>
-                            <li>Phone:  <%= profile.phone%></li>
-                            <li>Zalo:  <%= profile.zalo%></li>
+                            <li>Email: <%= profile.email%>
+                            </li>
+                            <li>Phone: <%= profile.phone%>
+                            </li>
+                            <li>Zalo: <%= profile.zalo%>
+                            </li>
                         </ul>
                         <div class="d-flex">
-                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79" target="_blank"> <i class="fab fa-facebook-f icon"></i></a>
-                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79" target="_blank"> <i class="fab fa-instagram icon"></i></a>
-                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79" target="_blank"> <i class="fab fa-twitter icon"></i></a>
+                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79"
+                                target="_blank"> <i class="fab fa-facebook-f icon"></i></a>
+                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79"
+                                target="_blank"> <i class="fab fa-instagram icon"></i></a>
+                            <a style="text-decoration: none;" href="https://www.facebook.com/tan.tandy.79"
+                                target="_blank"> <i class="fab fa-twitter icon"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="w-100 bg-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+                    <path fill="#000000" fill-opacity="1"
+                        d="M0,192L40,192C80,192,160,192,240,165.3C320,139,400,85,480,85.3C560,85,640,139,720,144C800,149,880,107,960,90.7C1040,75,1120,85,1200,101.3C1280,117,1360,139,1400,149.3L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+                    </path>
+                </svg>
+            </div>
             <div class="container-fluid bg-dark home pb-5">
-                <div class="container">
+                <div class="main-grid">
                     <div class="row">
                         <div class="col-12">
                             <h2 class="title">
@@ -35,23 +51,31 @@
                         </div>
                         <% for (let index=0; index < projects.length; index++) { %>
                             <div data-aos="fade-up" class="col-lg-4 col-md-6">
-                                <div class="card project">
+                                <div class="card project" style="margin: 10px 0; padding: 10px">
                                     <a href="/project/detail/<%= projects[index]._id %>">
-                                        <img src=<%=projects[index].thumb %> alt="" class="card-image w-100">
+                                        <img src=<%=projects[index].thumb %> alt="" class="card-image">
                                     </a>
                                     <div class="card-body">
-                                        <h6 class="text-center">
+                                        <a class="project-name fw-bold" href="/project/detail/<%= projects[index]._id %>">
                                             <%= projects[index].name%>
+                                        </a>
+                                        <h6 class="mt-1" style="text-transform: uppercase; color: silver">
+                                            <%= projects[index].category%>
+                                        </h6>
+                                        <h6 class="mt-2" style="text-transform: uppercase; color: gray">
+                                            <i class="fal fa-calendar-alt me-2"></i>(<%= projects[index].createAt.getUTCDate() +"/"+
+                                                (projects[index].createAt.getUTCMonth()+1) +"/"+
+                                                projects[index].createAt.getUTCFullYear() %>)
                                         </h6>
                                     </div>
                                 </div>
                             </div>
-                        <% } %>
-                        <div class="col-12">
-                            <button onclick="window.location.href='/project' " class="btn-view-all">
-                                View All
-                            </button>
-                        </div>
+                            <% } %>
+                                <div class="col-12">
+                                    <button onclick="window.location.href='/project' " class="btn-view-all">
+                                        View All
+                                    </button>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -63,93 +87,155 @@
                         </h2>
                     </div>
                     <div class="col-12 mb-5">
-                        <div class="container">
-                            <div class="d-flex flex-wrap justify-content-center">
-                                <% for (let index=1; index <= 10; index++) { %>
-                                    <div data-aos="zoom-in-up" class="col-6 col-lg-3 col-xl-3 col-md-6" style="padding: 10px;">
-                                        <div class="card" style="padding: 8px;" >
-                                            <div class="work">
-                                                <img data-bs-toggle="modal" data-bs-target="#id<%= index%>" src="/img/<%= index%>.png" alt="" class="card-image work-image w-100">
+                        <div class="main-grid">
+                            <div data-aos="zoom-in-up" class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <% for (let index=1; index <=10; index++) { %>
+                                        <div class="swiper-slide">
+                                            <div class="card">
+                                                <div class="work">
+                                                    <img data-bs-toggle="modal" data-bs-target="#id<%= index%>"
+                                                        src="/img/<%= index%>.png" alt=""
+                                                        class="card-image work-image w-100">
+                                                </div>
                                             </div>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% for (let index=1; index <=10; index++) { %>
+                <div class="fade modal modal-mid" id="id<%= index%>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-long">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img data-bs-toggle="modal" src="/img/<%= index%>.png" alt="" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <div class="w-100 bg-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+                            <path fill="#000000" fill-opacity="1"
+                                d="M0,192L40,192C80,192,160,192,240,165.3C320,139,400,85,480,85.3C560,85,640,139,720,144C800,149,880,107,960,90.7C1040,75,1120,85,1200,101.3C1280,117,1360,139,1400,149.3L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="container-fluid home bg-danger">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="title">Service</h2>
+                            </div>
+                        </div>
+                        <div class="container pb-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card bg-white service">
+                                        <i class="fal fa-camcorder"></i>
+                                        <div class="card-body">
+                                            <h6 class="text-center text-dark text-bold mb-2">
+                                                <b>Service name</b>
+                                            </h6>
+                                            <p class="text-silver text-center">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis
+                                                modi
+                                                enim voluptas maxime?
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="fade modal modal-mid" id="id<%= index%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-long">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <img data-bs-toggle="modal" src="/img/<%= index%>.png" alt="" class="w-100">
-                                            </div>
-                                          </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-white service">
+                                        <i class="fal fa-calendar-star"></i>
+                                        <div class="card-body">
+                                            <h6 class="text-center text-dark text-bold mb-2">
+                                                <b>Event</b>
+                                            </h6>
+                                            <p class="text-silver text-center">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis
+                                                modi
+                                                enim voluptas maxime?
+                                            </p>
                                         </div>
-                                      </div>
-                                <% } %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid home bg-danger">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="title">Service</h2>
-                    </div>
-                </div>
-                <div class="container pb-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card bg-white service">
-                                <i class="fal fa-camcorder"></i>
-                                <div class="card-body">
-                                    <h6 class="text-center text-dark text-bold mb-2">
-                                        <b>Service name</b>
-                                    </h6>
-                                    <p class="text-silver text-center">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi
-                                        enim voluptas maxime?
-                                    </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card bg-white service">
-                                <i class="fal fa-calendar-star"></i>
-                                <div class="card-body">
-                                    <h6 class="text-center text-dark text-bold mb-2">
-                                        <b>Event</b>
-                                    </h6>
-                                    <p class="text-silver text-center">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi
-                                        enim voluptas maxime?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card bg-white service">
-                                <i class="fal fa-thumbs-up"></i>
-                                <div class="card-body">
-                                    <h6 class="text-center text-dark text-bold mb-2">
-                                        <b>Reputation</b>
-                                    </h6>
-                                    <p class="text-silver text-center">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis modi
-                                        enim voluptas maxime?
-                                    </p>
+                                <div class="col-md-4">
+                                    <div class="card bg-white service">
+                                        <i class="fal fa-thumbs-up"></i>
+                                        <div class="card-body">
+                                            <h6 class="text-center text-dark text-bold mb-2">
+                                                <b>Reputation</b>
+                                            </h6>
+                                            <p class="text-silver text-center">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis
+                                                modi
+                                                enim voluptas maxime?
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
     </body>
     <script>
         AOS.init({
-        offset: 100, // offset (in px) from the original trigger point
-        delay: 0, // values from 0 to 3000, with step 50ms
-        duration: 1000 // values from 0 to 3000, with step 50ms
-      });
+            offset: 100, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 1000 // values from 0 to 3000, with step 50ms
+        });
     </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            grabCursor: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            loop: true,
+            effect: "coverflow",
+            coverflowEffect: {
+                rotate: 30,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+
+            },
+            centeredSlides: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 20
+                }
+            },
+        });
+    </script>
+
 </html>

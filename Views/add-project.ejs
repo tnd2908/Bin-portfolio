@@ -7,25 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('layouts/header'); %>
         <link rel="stylesheet" href="/css/admin.css">
-        <title>Document</title>
+        <title>Add Project</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <%- include('layouts/menu-bar'); %>
-            </div>
-            <div class="col-10">
-                <form class="form" action="/project/add" method="post" id="forms" enctype='multipart/form-data'>
+            <%- include('layouts/menu-bar'); %>
+            <div class="col-auto">
+                <form class="form" id="form" enctype='multipart/form-data'>
                     <h3 class="mb-3">Thêm dự án mới</h3>
                     <div class="mb-3">
                         <label for="name" class="form-label"><i class="fal fa-signature me-2"></i>Tên dự án</label>
-                        <input name="name" type="text" class="form-control" id="name" placeholder="name@example.com">
+                        <input required name="name" type="text" class="form-control" id="name" placeholder="Tên dự án">
                     </div>
                     <div class="mb-3">
                         <label for="cate" class="form-label"><i class="fal fa-th me-2"></i>Danh mục</label>
-                        <select name="category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <select id="category" required name="category" class="form-select form-select-lg mb-3"
+                            aria-label=".form-select-lg example">
                             <option value="tvc">TVC</option>
                             <option value="viral">Viral</option>
                             <option value="film">Film</option>
@@ -35,21 +34,77 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label"><i class="fal fa-image me-2"></i>Hình ảnh</label>
-                        <input name="thumb" class="form-control form-control-sm" id="formFileSm" type="file">
-                      </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label"><i class="fal fa-link me-2"></i>Link</label>
-                        <input name="youtubeUrl" type="text" class="form-control" id="name" placeholder="Link video">
+                        <input required name="thumb" class="form-control form-control-sm" id="formFileSm" type="file">
                     </div>
-                    <button class="btn btn-danger w-100" type="submit">Xác nhận</button>
+                    <div class="mb-3">
+                        <label for="youtubeUrl" class="form-label"><i class="fal fa-link me-2"></i>Link</label>
+                        <input required name="youtubeUrl" type="text" class="form-control" id="youtubeUrl" placeholder="Link video">
+                    </div>
+                    <img src="" id="image-upload" alt=" ">
+                    <% if (msg) { %>
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <i class="fal fa-exclamation-triangle"></i>
+                            <div>
+                                <%= msg %>
+                            </div>
+                        </div>
+                        <% } %>
+                            <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Show a second modal and hide this one with the button below.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
+                                                data-bs-toggle="modal">Open second modal</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger w-100" type="submit">Xác nhận</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
 <script>
+    let thumb = null;
+    const projectName = document.getElementById('name')
+    const category = document.getElementById('category')
+    const youtubeUrl = document.getElementById('youtubeUrl')
+    const thumbInput = document.getElementById('formFileSm')
+
     document.getElementById('form').addEventListener('submit', (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        const formData = new FormData()
+        formData.append('thumb', thumbInput.files[0])
+        formData.append('name', projectName.value)
+        formData.append('category', category.value),
+        formData.append('youtubeUrl', youtubeUrl.value)
+        fetch('/project/add', {method: 'POST', body: formData}).then((res) => {
+            if (res.status === 400) {
+                alert('Fail')
+            } else {
+                window.location.href = '/admin'
+            }
+        })
+    })
+    const reader = new FileReader()
+    thumbInput.addEventListener('change', () => {
+        let files = thumbInput.files
+        reader.onload = async (event) => {
+            thumb = event.target.result
+            document.getElementById('image-upload').setAttribute('src', event.target.result)
+            document.getElementById('image-upload').style.display = 'block'
+        }
+        reader.readAsDataURL(files[0])
     })
 </script>
 

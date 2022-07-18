@@ -64,7 +64,6 @@ i.icon:hover {
 }
 .card{
     border-style: none;
-    margin: 10px 0;
 }
 .card.service i{
     margin: 0 auto;
@@ -76,6 +75,7 @@ i.icon:hover {
 .card-image{
     height: 250px;
     cursor: pointer;
+    border-radius: 6px;
 }
 .btn-view-all{
     background-color: black;
@@ -91,13 +91,58 @@ i.icon:hover {
     border-radius: 12px;
     overflow: hidden;
     transition: 0.5s;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     background-color: rgb(24, 22, 22);
+}
+.card.project .card-body {
+    padding-top: 0;
+}
+.main-grid {
+    width: 100%;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.project-name {
+    color: white;
+    text-decoration: none;
+}
+.project-name:hover {
+    color: white;
+}
+.card.project .card-image {
+    height: 150px;
+    width: 150px;
 }
 .card.card.project:hover{
     transform: translateY(-10px);
 }
 @media screen and (max-width: 600px) {
     .card-image.work-image {
-        height: 150px;
+        height: 250px;
     }
 }
+
+/* ------ Swiper -------*/
+.swiper {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px !important;
+    transform: translateY(60px) !important;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    padding: 8px;
+    height: 250px;
+
+  }
+  .swiper-pagination-bullet {
+    background-color: #fff !important;
+    width: 12px !important;
+    height: 12px !important;
+  }

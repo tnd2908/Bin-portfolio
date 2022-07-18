@@ -17,7 +17,7 @@ adminRouter.get('/', checkAuth, async (req, res) => {
     }
 })
 adminRouter.get('/add', checkAuth, (req, res) => {
-    res.render('add-project')
+    res.render('add-project', {msg: ''})
 })
 adminRouter.get('/livestream/add', checkAuth, (req, res) => {
     res.render('add-livestream')

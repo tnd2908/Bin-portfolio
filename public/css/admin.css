@@ -2,7 +2,12 @@
     min-height: 100vh;
     background: #222020;
     background: #222020;
-
+    width: 300px;
+    flex: 0 0 auto;
+}
+.col-auto {
+    width: calc(100% - 300px);
+    flex: 0 0 auto;
 }
 .nav {
     display: flex;
@@ -100,7 +105,13 @@ h4 {
 .project-name {
     min-height: 50px;
 }
-
+#image-upload {
+    height: 250px;
+    width: auto;
+    object-fit: cover;
+    display: none;
+    margin-bottom: 15px;
+}
 .btn-add {
     background-color: #ad6800;
     color: white;

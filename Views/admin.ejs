@@ -7,16 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%- include('layouts/header'); %>
     <link rel="stylesheet" href="/css/admin.css">
-    <title>Document</title>
+    <title>Admin</title>
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2">
-        <%- include('layouts/menu-bar'); %>
-      </div>
-      <div class="col-10">
+      <%- include('layouts/menu-bar'); %>
+      <div class="col-auto">
         <div class="container-fluid pt-5">
           <div class="row">
             <% for (let index=0; index < projects.length; index++) { %>
@@ -66,7 +64,6 @@
   </div>
 </body>
 <script>
-  const axios = require('axios')
   const deletePj = (id, publicId) => {
     fetch(`/project/delete/${id}/${publicId}`, {method: 'DELETE'})
       .then((res) => {

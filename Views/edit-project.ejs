@@ -13,10 +13,8 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <%- include('layouts/menu-bar'); %>
-            </div>
-            <div class="col-10">
+            <%- include('layouts/menu-bar'); %>
+            <div class="col-auto">
                 <form class="form" action="/project/edit/<%= detail._id%>" method="post" id="forms"
                     enctype='multipart/form-data'>
                     <h3 class="mb-3">Chỉnh sửa thông tin dự án</h3>

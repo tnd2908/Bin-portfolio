@@ -13,10 +13,8 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <%- include('layouts/menu-bar'); %>
-            </div>
-            <div class="col-10">
+            <%- include('layouts/menu-bar'); %>
+            <div class="col-auto">
                 <form class="form" action="/project/add-stream" method="post" id="forms" enctype='multipart/form-data'>
                     <h3 class="mb-3">Thêm dự án mới</h3>
                     <div class="mb-3">
