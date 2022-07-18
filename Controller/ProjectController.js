@@ -61,23 +61,25 @@ class ProjectController {
         const { name, category, youtubeUrl } = req.body;
         const file = req.files.thumb
         try {
-            cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
-                if (result) {
-                    await Project.create({
-                        name,
-                        category,
-                        youtubeUrl,
-                        thumb: result.url,
-                        imageId: result.public_id,
-                    })
-                    return res.redirect('/admin')
-                } else {
-                    console.log(err);
-                    return res.json({
-                        msg: err
-                    })
-                }
-            })
+            if (name, category, youtubeUrl, file) {
+                cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+                    if (result) {
+                        await Project.create({
+                            name,
+                            category,
+                            youtubeUrl,
+                            thumb: result.url,
+                            imageId: result.public_id,
+                        })
+                        return res.redirect('/admin')
+                    } else {
+                        console.log(err);
+                        return res.render('add-project', {msg: 'Đã xảy ra lỗi'});
+                    }
+                })
+            } else {
+                return res.render('add-project', {msg: 'Vui lòng nhập đủ thông tin (Tên, hình ảnh, ...)'});
+            }
         } catch (error) {
             console.log(error);
             res.json({

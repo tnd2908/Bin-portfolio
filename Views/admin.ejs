@@ -66,6 +66,7 @@
   </div>
 </body>
 <script>
+  const axios = require('axios')
   const deletePj = (id, publicId) => {
     fetch(`/project/delete/${id}/${publicId}`, {method: 'DELETE'})
       .then((res) => {
