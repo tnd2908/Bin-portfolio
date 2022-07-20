@@ -39,7 +39,7 @@ class ProjectController {
     static getProjects = async (req, res) => {
         try {
             const { page } = req.query || 1
-            const projects = await Project.find({}).skip(page * 12).limit(12) || []
+            const projects = await Project.find({}).skip((+page - 1) * 12).limit(12) || []
             const total = await Project.countDocuments()
             res.render('project-list', {projects, total: Math.ceil(total / itemsPerPage) })
         } catch (error) {
@@ -59,7 +59,7 @@ class ProjectController {
         try {
             const { page } = req.query || 1
             const { category } = req.params
-            const projects = await Project.find({category}).skip(page * 12).limit(12) || []
+            const projects = await Project.find({category}).skip((page - 1 )* 12).limit(12) || []
             const total = await Project.countDocuments({category})
             res.render('project-list', {projects, total: Math.ceil(total / itemsPerPage)})
         } catch (error) {

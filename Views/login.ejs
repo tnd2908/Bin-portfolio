@@ -38,25 +38,30 @@
 <script>
     document.getElementById('form').addEventListener('submit', (e) => {
         e.preventDefault()
+        const fc = document.querySelectorAll('.form-control')
+        console.log(fc);
         const username = document.getElementById('username').value
         const password = document.getElementById('password').value
-        fetch('/admin/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                username,
-                password,
-            }),
-            headers: {
-      'Content-Type': 'application/json'
-    }
-        }).then((res) => {
-            console.log(res);
-            if(res.status === 400) {
-                alert('Sai tài khoản hoặc mật khẩu')
-            } else {
-                window.location.href='/admin'
-            }
+        fc.forEach(e => {
+            console.log(e.name);
         })
+    //     fetch('/admin/login', {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+    //             username,
+    //             password,
+    //         }),
+    //         headers: {
+    //   'Content-Type': 'application/json'
+    // }
+    //     }).then((res) => {
+    //         console.log(res);
+    //         if(res.status === 400) {
+    //             alert('Sai tài khoản hoặc mật khẩu')
+    //         } else {
+    //             window.location.href='/admin'
+    //         }
+    //     })
     })
 
 </script>
