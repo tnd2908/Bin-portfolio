@@ -45,23 +45,23 @@
         fc.forEach(e => {
             console.log(e.name);
         })
-    //     fetch('/admin/login', {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //             username,
-    //             password,
-    //         }),
-    //         headers: {
-    //   'Content-Type': 'application/json'
-    // }
-    //     }).then((res) => {
-    //         console.log(res);
-    //         if(res.status === 400) {
-    //             alert('Sai tài khoản hoặc mật khẩu')
-    //         } else {
-    //             window.location.href='/admin'
-    //         }
-    //     })
+        fetch('/admin/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                username,
+                password,
+            }),
+            headers: {
+      'Content-Type': 'application/json'
+    }
+        }).then((res) => {
+            console.log(res);
+            if(res.status === 400) {
+                alert('Sai tài khoản hoặc mật khẩu')
+            } else {
+                window.location.href='/admin'
+            }
+        })
     })
 
 </script>
