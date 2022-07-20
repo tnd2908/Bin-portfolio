@@ -119,6 +119,7 @@ i.icon:hover {
 .card.card.project:hover{
     transform: translateY(-10px);
 }
+
 @media screen and (max-width: 600px) {
     .card-image.work-image {
         height: 250px;

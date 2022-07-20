@@ -34,10 +34,10 @@
                     </div>
                 </div>
             </div>
-            <div class="w-100 bg-dark">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+            <div class="w-100 bg-dark svg-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 172">
                     <path fill="#000000" fill-opacity="1"
-                        d="M0,192L40,192C80,192,160,192,240,165.3C320,139,400,85,480,85.3C560,85,640,139,720,144C800,149,880,107,960,90.7C1040,75,1120,85,1200,101.3C1280,117,1360,139,1400,149.3L1440,160L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z">
+                        d="M0,96L48,106.7C96,117,192,139,288,154.7C384,171,480,181,576,154.7C672,128,768,64,864,32C960,0,1056,0,1152,16C1248,32,1344,64,1392,80L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
                     </path>
                 </svg>
             </div>
@@ -56,14 +56,16 @@
                                         <img src=<%=projects[index].thumb %> alt="" class="card-image">
                                     </a>
                                     <div class="card-body">
-                                        <a class="project-name fw-bold" href="/project/detail/<%= projects[index]._id %>">
+                                        <a class="project-name fw-bold"
+                                            href="/project/detail/<%= projects[index]._id %>">
                                             <%= projects[index].name%>
                                         </a>
                                         <h6 class="mt-1" style="text-transform: uppercase; color: silver">
                                             <%= projects[index].category%>
                                         </h6>
                                         <h6 class="mt-2" style="text-transform: uppercase; color: gray">
-                                            <i class="fal fa-calendar-alt me-2"></i>(<%= projects[index].createAt.getUTCDate() +"/"+
+                                            <i class="fal fa-calendar-alt me-2"></i>(<%=
+                                                projects[index].createAt.getUTCDate() +"/"+
                                                 (projects[index].createAt.getUTCMonth()+1) +"/"+
                                                 projects[index].createAt.getUTCFullYear() %>)
                                         </h6>

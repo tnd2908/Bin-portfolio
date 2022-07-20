@@ -52,7 +52,7 @@
                         </div>
                         <div class="d-flex justify-content-end" style="padding: 10px;">
                           <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Hủy</button>
-                          <button onclick="deletePj(<%= JSON.stringify(projects[index]._id) %>, <%= JSON.stringify(projects[index].imageId) %>)" data-bs-dismiss="modal" type="button" class="btn btn-danger">Đồng ý</button>
+                          <button id="btn-submit-<%= projects[index]._id %>" onclick="deletePj(<%= JSON.stringify(projects[index]._id) %>, <%= JSON.stringify(projects[index].imageId) %>)" type="button" class="btn btn-danger">Đồng ý</button>
                         </div>
                       </div>
                     </div>
@@ -68,9 +68,13 @@
 </body>
 <script>
   const deletePj = (id, publicId) => {
+    const button = document.getElementById('btn-submit-' + id)
+    button.innerHTML = "<div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div>"
+    button.disabled = true
     fetch(`/project/delete-livestream/${id}/${publicId}`, {method: 'DELETE'})
       .then((res) => {
-        console.log(res)
+        button.innerHTML = "Đồng ý"
+        button.disabled = false
         if (res.status === 400) {
           alert('Đã xảy ra lỗi, không thể xóa!')
         } else {

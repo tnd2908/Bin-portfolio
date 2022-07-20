@@ -6,7 +6,7 @@ cloudinary.config({
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
 })
-
+const itemsPerPage = 12
 class ProjectController {
     static getDetail = async (req, res) =>{
         try {
@@ -14,10 +14,17 @@ class ProjectController {
             const detail = await Project.findById(id)
             if (detail) {
                 const { category, name } = detail
+                let link = ''
+                if (detail.youtubeUrl.includes('watch?v=')) {
+                    link = detail.youtubeUrl.replace('watch?v=', 'embed/')
+                } else {
+                    link = detail.youtubeUrl.replace('.be/', 'be.com/embed/')
+                }
+                console.log(link);
                 res.render('detail', {detail: {
                     name,
                     category,
-                    youtubeUrl: detail.youtubeUrl.replace('watch?v=', 'embed/')
+                    youtubeUrl: link
                 }})
             } else {
                 res.redirect('/')
@@ -33,7 +40,8 @@ class ProjectController {
         try {
             const { page } = req.query || 1
             const projects = await Project.find({}).skip(page * 12).limit(12) || []
-            res.render('project-list', {projects})
+            const total = await Project.countDocuments()
+            res.render('project-list', {projects, total: Math.ceil(total / itemsPerPage) })
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +60,8 @@ class ProjectController {
             const { page } = req.query || 1
             const { category } = req.params
             const projects = await Project.find({category}).skip(page * 12).limit(12) || []
-            res.render('project-list', {projects})
+            const total = await Project.countDocuments({category})
+            res.render('project-list', {projects, total: Math.ceil(total / itemsPerPage)})
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +69,6 @@ class ProjectController {
     static addProject = async (req, res) => {
         const { name, category, youtubeUrl } = req.body;
         const image = req.files
-        console.log(image);
         try {
             if (name, category, youtubeUrl, image) {
                 const file = req.files.thumb
@@ -107,18 +115,18 @@ class ProjectController {
                         thumb: result.url,
                         imageId: result.public_id
                     })
-                    return res.redirect('/admin/livestream')
-                } else {
-                    console.log(err);
                     return res.json({
-                        msg: err
+                        msg: 'Thêm thành công'
+                    })
+                } else {
+                    return res.status(400).json({
+                        msg: 'Đã xảy ra lỗi'
                     })
                 }
             })
         } catch (error) {
-            console.log(error);
-            res.json({
-                msg: error
+            return res.status(400).json({
+                msg: 'Đã xảy ra lỗi'
             })
         }
     }
@@ -155,13 +163,16 @@ class ProjectController {
                         })
                     })
                 } else {
+                    console.log(err);
+                    console.log('fail 1');
                     return res.status(400).json({
                         msg: 'Fail'
                     })
                 }
             }).clone()
         } catch (error) {
-            return res.json({
+            console.log('fail 2');
+            return res.status(400).json({
                 msg: error,
             })
         }

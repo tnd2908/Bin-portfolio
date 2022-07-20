@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-danger w-100" type="submit">Xác nhận</button>
+                            <button id="btn-submit" class="btn btn-danger w-100" type="submit">Xác nhận</button>
                 </form>
             </div>
         </div>
@@ -80,7 +80,7 @@
     const category = document.getElementById('category')
     const youtubeUrl = document.getElementById('youtubeUrl')
     const thumbInput = document.getElementById('formFileSm')
-
+    const button = document.getElementById('btn-submit')
     document.getElementById('form').addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData()
@@ -88,9 +88,13 @@
         formData.append('name', projectName.value)
         formData.append('category', category.value),
         formData.append('youtubeUrl', youtubeUrl.value)
+        button.innerHTML = "<div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div>"
+        button.disabled = true
         fetch('/project/add', {method: 'POST', body: formData}).then((res) => {
             if (res.status === 400) {
                 alert('Fail')
+                button.innerHTML = "Xác nhận"
+                button.disabled = false;
             } else {
                 window.location.href = '/admin'
             }

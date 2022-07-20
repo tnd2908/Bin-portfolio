@@ -263,3 +263,10 @@ ul li{
   justify-content: center;
 
 }
+button:disabled {
+  opacity: 0.7;
+}
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
