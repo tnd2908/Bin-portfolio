@@ -4,6 +4,7 @@
     background: #222020;
     width: 300px;
     flex: 0 0 auto;
+    padding: 0;
 }
 .col-auto {
     width: calc(100% - 300px);
@@ -154,8 +155,21 @@ table {
     margin: 0 auto;
     margin-top: 100px;
 }
-.btn-group {
-    
+.error-show p {
+    color: #c53939;
+}
+.error-password p {
+    color: #c53939;
+}
+.error-new-password p {
+    color: #c53939;
+}
+.show-password {
+    position: absolute;
+    right: 30px;
+    top: 57px;
+    cursor: pointer;
+    color: silver
 }
 /* .project h4 {
     float: left;

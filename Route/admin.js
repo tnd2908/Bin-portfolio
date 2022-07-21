@@ -64,6 +64,14 @@ adminRouter.get('/profile', checkAuth, async (req, res) => {
         console.log(error);
     }
 })
+adminRouter.get('/password', async (req, res) => {
+    try {
+        res.render('change-password')
+    } catch (error) {
+        console.log(error);
+    }
+})
+adminRouter.post('/password', AuthController.changePassword)
 adminRouter.post('/login', AuthController.login)
 adminRouter.post('/register', AuthController.register)
 adminRouter.get('/reset', AuthController.resetPassword)

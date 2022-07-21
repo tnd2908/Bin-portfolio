@@ -66,5 +66,23 @@ class AuthController {
             })
         }
     }
+    static changePassword = async (req, res) => {
+        try {
+            const {password, newPassword} = req.body
+            const user = await User.findOne({username: 'admin'})
+            await bcrypt.compare(password, user.password, async (err, same) => {
+                if (same) {
+                    const pw = await bcrypt.hash(newPassword, 10)
+                    await User.findOneAndUpdate({username: 'admin'}, {password: pw}) 
+                    return res.redirect('/admin')
+                }
+                else return res.status(400).json({
+                    msg: 'Mật khẩu cũ không đúng'
+                })
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 module.exports = AuthController

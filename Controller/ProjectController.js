@@ -20,7 +20,6 @@ class ProjectController {
                 } else {
                     link = detail.youtubeUrl.replace('.be/', 'be.com/embed/')
                 }
-                console.log(link);
                 res.render('detail', {detail: {
                     name,
                     category,
